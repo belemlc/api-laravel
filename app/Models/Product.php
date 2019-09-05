@@ -31,6 +31,8 @@ class Product extends Model
      */
     public static function search(array $attributes = [])
     {
+        $limitPerPage = 15;
+        $limitPerPage = $attributes['limit'] ?? $limitPerPage;
         $query = parent::whereNotNull('name');
         if (isset($attributes['q'])) {
             $keyword = $attributes['q'];
@@ -45,6 +47,6 @@ class Product extends Model
             $query->orderBy($column, $value);
         }
 
-        return $query;
+        return $query->paginate($limitPerPage);
     }
 }

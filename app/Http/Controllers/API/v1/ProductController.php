@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
+    protected $limitPerPage = 15;
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +18,11 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         try {
+            if (isset($request->limit)) {
+                $this->limitPerPage = $request->limit;
+            }
             $products = Product::search($request->all());
-            $data = $products->paginate(15);
+            $data = $products;
             return response()->json($data, 200);
         } catch (\Throwable $th) {
             return response()->json([
