@@ -38,10 +38,10 @@ class ProductController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [ 
-                'nome' => 'required', 
-                'marca' => 'required', 
-                'preco' => 'required', 
-                'quantidade' => 'required|min:1', 
+                'name' => 'required', 
+                'brand' => 'required', 
+                'price' => 'required', 
+                'quantity' => 'required|min:1', 
             ]);
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors()], 401);            

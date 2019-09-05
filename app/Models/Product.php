@@ -7,18 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [
-        'nome',
-        'marca',
-        'preco',
-        'quantidade'
+        'name',
+        'brand',
+        'price',
+        'quantity'
     ];
 
-    public function setPrecoAttribute($value)
+    public function setPriceAttribute($value)
     {
-        $this->attributes['preco'] = str_replace(",", ".", str_replace (".","", $value));
+        $this->attributes['price'] = str_replace(",", ".", str_replace (".","", $value));
     }
 
-    public function getPrecoAttribute($value)
+    public function getPriceAttribute($value)
     {
         return number_format($value, 2, ',', '.');
     }
@@ -31,10 +31,10 @@ class Product extends Model
      */
     public static function search(array $attributes = [])
     {
-        $query = parent::whereNotNull('nome');
+        $query = parent::whereNotNull('name');
         if (isset($attributes['q'])) {
             $keyword = $attributes['q'];
-            $query->where('nome', 'like', "%{$keyword}%");
+            $query->where('name', 'like', "%{$keyword}%");
         } if (isset($attributes['filter'])) {
             $filters = explode(':', $attributes['filter']);
             list($column, $value) = $filters;
