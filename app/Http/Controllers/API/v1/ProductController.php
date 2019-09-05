@@ -82,7 +82,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $input = $request->all();
+            $product = Product::find($id)->update($input);
+            $data = [
+                'success' => 'product updated successfully.',
+                'data' => $product
+            ];
+            return response()->json($data, 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => 'product not updated.',
+                'devError' => $th->getMessage()
+            ], 404);
+        }
     }
 
     /**
@@ -93,6 +106,18 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $product = Product::find($id)->delete();
+            $data = [
+                'success' => 'product deleted successfully.',
+                'data' => $product
+            ];
+            return response()->json($data, 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => 'product not deleted.',
+                'devError' => $th->getMessage()
+            ], 404);
+        }
     }
 }

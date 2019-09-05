@@ -21,9 +21,16 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('/user', 'Api\v1\UserController@index');
         Route::get('/signout', 'Api\v1\AuthController@logout');
-        // Create Products
-        Route::post('/products', 'Api\v1\ProductController@store');
-        // Get all
-        Route::get('/products', 'Api\v1\ProductController@index');
+        // Product
+        Route::group(['prefix' => '/products'], function () {
+            Route::post('/', 'Api\v1\ProductController@store');
+            Route::get('/', 'Api\v1\ProductController@index');
+            // has id
+            Route::group(['prefix' => '/{id}'], function () {
+                Route::get('', 'Api\v1\ProductController@show');
+                Route::put('', 'Api\v1\ProductController@update');
+                Route::delete('', 'Api\v1\ProductController@destroy');
+            }); 
+        });
     });
 });

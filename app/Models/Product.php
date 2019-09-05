@@ -15,7 +15,7 @@ class Product extends Model
 
     public function setPrecoAttribute($value)
     {
-        $this->attributes['preco'] = str_replace(",", ".", str_replace ("."," ",$value));
+        $this->attributes['preco'] = str_replace(",", ".", str_replace (".","", $value));
     }
 
     public function getPrecoAttribute($value)
