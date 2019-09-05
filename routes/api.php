@@ -21,5 +21,9 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('/user', 'Api\v1\UserController@index');
         Route::get('/signout', 'Api\v1\AuthController@logout');
+        // Create Products
+        Route::post('/products', 'Api\v1\ProductController@store');
+        // Get all
+        Route::get('/products', 'Api\v1\ProductController@index');
     });
 });

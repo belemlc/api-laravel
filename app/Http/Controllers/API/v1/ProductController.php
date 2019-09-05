@@ -3,28 +3,28 @@
 namespace App\Http\Controllers\API\v1;
 
 use Validator;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 
-class UserController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $user = Auth::user();
-            $data = [
-                'data' => $user
-            ];
+            $products = Product::search($request->all());
+            $data = $products->paginate(15);
             return response()->json($data, 200);
         } catch (\Throwable $th) {
-            return response()->json(['error' => 'User not found'], 401);
+            return response()->json([
+                'error' => 'product not found',
+                'devError' => $th->getMessage()
+            ], 404);
         }
     }
 
@@ -38,27 +38,27 @@ class UserController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [ 
-                'name' => 'required', 
-                'email' => 'required|email', 
-                'password' => 'required', 
-                'confirm_password' => 'required|same:password', 
+                'nome' => 'required', 
+                'marca' => 'required', 
+                'preco' => 'required', 
+                'quantidade' => 'required|min:1', 
             ]);
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors()], 401);            
             }
-            $param = $request->all();
-            $param['password'] = bcrypt($param['password']);
-            $user = User::create($param);
+    
+            $input = $request->all();
+            $product = Product::create($input);
             $data = [
-                'success' => 'user created',
+                'success' => 'product created successfully.',
+                'data' => $product
             ];
             return response()->json($data, 200);
         } catch (\Throwable $th) {
-            $data = [
-                'error' => 'User not created',
-                'userError' => $th->getMessage()
-            ];
-            return response()->json($data, 401);
+            return response()->json([
+                'error' => 'product not created.',
+                'devError' => $th->getMessage()
+            ], 404);
         }
     }
 
