@@ -7,26 +7,26 @@ Luiz Carlos Belem `<belemlc@gmail.com>`
 https://hub.docker.com/r/belemlc/api-laravel
 
 ## Instalação
-    Docker
+    Usando o Docker
         1) Baixe a image que se encontra no docker hub
         2) docker pull belemlc/api-laravel
         3) docker-compose up --build
         4) git clone https://github.com/belemlc/api-laravel.git
-        5) Acompanhar evolução da container levantando [docker logs app -f]
+        5) Para acompanhar evolução do container levantando [docker logs app -f]
         6) Porta Api 8000
         7) Porta Mysql 3308
 
-    Laravel Develpment Server
+    Usando o Laravel Development Server
         1) git clone https://github.com/belemlc/api-laravel.git
         2) cd api-laravel
         3) php artisan serve
-        4) Porta Api 8000
-        5) Porta Mysql 3307
+        4) Porta da Api 8000
+        5) Porta do Mysql 3307
 
 
 
 ## Gerar Produtos (opcional)
-    Gerar Produtos com <b>Tinker</b>
+    Gerar Produtos Fakes com Tinker
        - Se tiiver usando Docker: docker exec -it app bash
        - php artisan tinker
        - factory('App\Models\Product', 50)->create()
@@ -35,7 +35,7 @@ https://hub.docker.com/r/belemlc/api-laravel
 
     Filtros
       - filter=brand:[BRAND_NAME]
-      - sort=[COLUMN_NAME]:[ASC|DESC]
+      - sort=[COLUMN_NAME]:[asc|desc]
       - limit=[NUMBER_LIMIT_PER_PAGE]
      
     exemplo: ?filter=brand:marte&sort=name:desc&limit=10
@@ -44,7 +44,7 @@ https://hub.docker.com/r/belemlc/api-laravel
     http://localhost:8000/api/v1
 
 ## User Interface
-    Foi criado uma interface básica para: 
+    Foi criado uma interface básica com as seguintes funcionalidades: 
      - Listar produtos
      - Incluir um produto 
      - Excluir um produto
