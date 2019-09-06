@@ -6,25 +6,39 @@
 API Rest usando Laravel com authenticação usando JWT
 
 ## Instalaçãao
+    Docker
+        1) Baixe a image que se encontra no docker hub
+        2) docker pull belemlc/api-laravel
+        3) docker-compose up --build
+        4) git clone https://github.com/belemlc/api-laravel.git
+        5) Acompanhar evolução da container levantando [docker logs app -f]
+        6) Porta Api 8000
+        7) Porta Mysql 3308
 
--  Docker
-     1) Baixe a image que se encontra no docker hub
-        1) docker pull belemlc/api-laravel
-        2) docker-compose up --build
-- Usando o Artisan
-- Lamp
-- Gerar Produtos com <b>Tinker</b>
-  - Para docker use docker exec -it app bash
-  - php artisan tinker
-  - $products = factory('App\Models\Product', 50)->create()
+    Laravel Develpment Server
+        1) git clone https://github.com/belemlc/api-laravel.git
+        2) cd api-laravel
+        3) php artisan serve
+        4) Porta Api 8000
+        5) Porta Mysql 3307
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+
+
+## Gerar Produtos (opcional)
+    Gerar Produtos com <b>Tinker</b>
+       - Se tiiver usando Docker: docker exec -it app bash
+       - php artisan tinker
+       - factory('App\Models\Product', 50)->create()
 
 ## Usando a API
 
-- Aplicando o Filtro (Não é oo brigatório o uso de todos)
-  - filter=brand:[BRAND_NAME]
-  - sort=[COLUMN_NAME]:[ASC|DESC]
-  - limit=[NUMBER_LIMIT_PER_PAGE]
-- exemplo: ?filter=brand:marte&sort=name:desc&limit=10
+    Filtros
+      - filter=brand:[BRAND_NAME]
+      - sort=[COLUMN_NAME]:[ASC|DESC]
+      - limit=[NUMBER_LIMIT_PER_PAGE]
+     
+    exemplo: ?filter=brand:marte&sort=name:desc&limit=10
+
+* Endpoint para acessar a api
+    http://localhost:8000/api/v1
 
