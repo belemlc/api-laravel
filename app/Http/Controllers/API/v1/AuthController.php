@@ -15,7 +15,7 @@ class AuthController extends Controller
 
     }
 
-    public function login(Request $request)
+    public function signin(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email', 
@@ -39,7 +39,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout()
+    public function signout()
     {
         Auth::guard('api')->logout();
         return response()->json(['success' => 'logout successfully'], 200);
