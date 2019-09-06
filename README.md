@@ -5,7 +5,7 @@
 
 API Rest usando Laravel com authenticação usando JWT
 
-## Instalaçãao
+## Instalação
     Docker
         1) Baixe a image que se encontra no docker hub
         2) docker pull belemlc/api-laravel
@@ -41,4 +41,15 @@ API Rest usando Laravel com authenticação usando JWT
 
 * Endpoint para acessar a api
     http://localhost:8000/api/v1
+
+## User Interface
+    Foi criado uma interface básica para: 
+     - Listar produtos
+     - Incluir um produto 
+     - Excluir um produto
+    
+    Para acessar a aplicação basta fazer o clone ou fork em:
+    https://github.com/belemlc/veus-challenge-angular.git
+
+    No arquivo README explica como instalar, o mesmo pode ser instalado usando docker
 
