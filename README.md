@@ -1,12 +1,10 @@
-<!-- ## Docker  Hub
-<p>belemlc/laravel-api</p> -->
-
 # Básica API Rest com Laravel
 
 API Rest usando Laravel com authenticação usando JWT
 
 Luiz Carlos Belem `<belemlc@gmail.com>`
 <small>(21) 97300-8600</small>
+https://hub.docker.com/r/belemlc/api-laravel
 
 ## Instalação
     Docker
