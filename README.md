@@ -5,6 +5,9 @@
 
 API Rest usando Laravel com authenticação usando JWT
 
+Luiz Carlos Belem `<belemlc@gmail.com>`
+<small>(21) 97300-8600</small>
+
 ## Instalação
     Docker
         1) Baixe a image que se encontra no docker hub
